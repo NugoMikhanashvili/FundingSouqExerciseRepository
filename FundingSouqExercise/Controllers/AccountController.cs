@@ -26,7 +26,6 @@ namespace FundingSouqExercise.Controllers
 
         public AccountController(ITokenService tokenService, IAccountService accountService)
         {
-            this.dbContext = dbContext;
             this.tokenService = tokenService;
             this.accountService = accountService;
         }

@@ -24,7 +24,6 @@ namespace FundingSouqExercise.Controllers
 
         public UsersController(IUserService userService, IAccountService accountService)
         {
-            _dbContext = dbContext;
             _accountService = accountService;
             _userService = userService;
         }
@@ -63,7 +62,7 @@ namespace FundingSouqExercise.Controllers
         }
 
         [HttpPost("register")]
-        [Authorize]
+        //[Authorize]
         public async Task<IActionResult> RegisterUser(UserRegisterDTO userRegisterDto)
         {
             try
