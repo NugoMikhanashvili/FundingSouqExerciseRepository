@@ -19,11 +19,10 @@ namespace FundingSouqExercise.Controllers
     [ApiController]
     public class UsersController : BaseApiController
     {
-        private readonly DbContext _dbContext;
         private readonly IAccountService _accountService;
         private readonly IUserService _userService;
 
-        public UsersController(DbContext dbContext, IUserService userService, IAccountService accountService)
+        public UsersController(IUserService userService, IAccountService accountService)
         {
             _dbContext = dbContext;
             _accountService = accountService;

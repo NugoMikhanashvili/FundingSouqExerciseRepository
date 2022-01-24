@@ -21,11 +21,10 @@ namespace FundingSouqExercise.Controllers
     [ApiController]
     public class AccountController : BaseApiController
     {
-        private readonly DbContext dbContext;
         private readonly ITokenService tokenService;
         private readonly IAccountService accountService;
 
-        public AccountController(DbContext dbContext, ITokenService tokenService, IAccountService accountService)
+        public AccountController(ITokenService tokenService, IAccountService accountService)
         {
             this.dbContext = dbContext;
             this.tokenService = tokenService;
