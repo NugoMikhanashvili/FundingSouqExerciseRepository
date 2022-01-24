@@ -1,0 +1,232 @@
+{
+	"info": {
+		"_postman_id": "edda3ead-732c-4559-9e53-ba0450a7d9d4",
+		"name": "FundingSouqExercise",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "UserController",
+			"item": [
+				{
+					"name": "Register User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"usrname2\",\r\n    \"password\": \"psswrd1234\",\r\n    \"roleid\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44318/user/register",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44318",
+							"path": [
+								"user",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ClientController",
+			"item": [
+				{
+					"name": "Create Client",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\": \"clientfirstname\",\r\n    \"lastname\": \"clientlastnam\",\r\n    \"sex\": \"male\",\r\n    \"personalId\": 1,\r\n    \"profilePhoto\": \"www.google.com\",\r\n    \"email\": \"coolguy@mail.cool\",\r\n    \"mobileNumber\": 995,\r\n    \"country\": \"canada\",\r\n    \"city\": \"toronto\",\r\n    \"street\": \"kostava\",\r\n    \"zipCode\": 101\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44318/clients/create",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44318",
+							"path": [
+								"clients",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Client",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Clients",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				},
+				{
+					"name": "Update Client",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\": \"clientfirstnamemodified\",\r\n    \"lastname\": \"clientlastnam\",\r\n    \"sex\": \"male\",\r\n    \"personalId\": 1,\r\n    \"profilePhoto\": \"www.google.com\",\r\n    \"email\": \"coolguy@mail.cool\",\r\n    \"mobileNumber\": 995,\r\n    \"country\": \"canada\",\r\n    \"city\": \"toronto\",\r\n    \"street\": \"kostava\",\r\n    \"zipCode\": 101\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44318/clients/update",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44318",
+							"path": [
+								"clients",
+								"update"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "AccountController",
+			"item": [
+				{
+					"name": "Log In",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"\",\r\n    \"password\":\"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44318/account/login",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44318",
+							"path": [
+								"account",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Log Out",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "apikey"
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
