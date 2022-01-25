@@ -16,14 +16,14 @@ namespace FundingSouqExercise.Migrations
                     Firstname = table.Column<string>(nullable: true),
                     Lastname = table.Column<string>(nullable: true),
                     Sex = table.Column<string>(nullable: true),
-                    PersonalId = table.Column<int>(nullable: false),
+                    PersonalId = table.Column<string>(nullable: true),
                     ProfilePhoto = table.Column<string>(nullable: true),
                     Email = table.Column<string>(nullable: true),
-                    MobileNumber = table.Column<int>(nullable: false),
+                    MobileNumber = table.Column<string>(nullable: true),
                     Country = table.Column<string>(nullable: true),
                     City = table.Column<string>(nullable: true),
                     Street = table.Column<string>(nullable: true),
-                    ZipCode = table.Column<int>(nullable: false)
+                    ZipCode = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

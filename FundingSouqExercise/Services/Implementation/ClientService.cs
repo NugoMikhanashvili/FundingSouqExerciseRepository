@@ -2,6 +2,7 @@
 using FundingSouqExercise.Data.Abstraction;
 using FundingSouqExercise.Data.Domain.POCO;
 using FundingSouqExercise.Models;
+using FundingSouqExercise.Models.Pagination;
 using FundingSouqExercise.Services.Abstraction;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -15,7 +16,7 @@ namespace FundingSouqExercise.Services.Implementation
     public class ClientService : BaseService, IClientService
     {
         private readonly IClientRepository clientRepository;
-        public ClientService (IClientRepository clientRepository)
+        public ClientService(IClientRepository clientRepository)
         {
             this.clientRepository = clientRepository;
         }
@@ -58,7 +59,7 @@ namespace FundingSouqExercise.Services.Implementation
             return result;
         }
 
-        public async Task<ResultWrapper<ClientServiceModel>> DeleteCLient(int personalId)
+        public async Task<ResultWrapper<ClientServiceModel>> DeleteCLient(string personalId)
         {
             var client = clientRepository.Get(x => x.PersonalId == personalId).FirstOrDefault();
             if (client == null) return new ResultWrapper<ClientServiceModel>
@@ -108,9 +109,24 @@ namespace FundingSouqExercise.Services.Implementation
             };
         }
 
-        public async Task<ResultWrapper<ClientServiceModel>> GetClient(int personalId)
+        public async Task<ResultWrapper<ClientServiceModel>> GetClient(string personalId)
         {
             var client = clientRepository.Get(x => x.PersonalId == personalId).FirstOrDefault();
+            if (client == null) return new ResultWrapper<ClientServiceModel>
+            {
+                Status = ResultCodeEnum.ClientNotFound,
+                Value = null,
+            };
+
+            return new ResultWrapper<ClientServiceModel>
+            {
+                Status = ResultCodeEnum.Code200Success,
+                Value = ClientToClientServiceModel(client)
+            };
+        }
+        public async Task<ResultWrapper<ClientServiceModel>> GetClient(int id)
+        {
+            var client = clientRepository.Get(x => x.Id== id).FirstOrDefault();
             if (client == null) return new ResultWrapper<ClientServiceModel>
             {
                 Status = ResultCodeEnum.ClientNotFound,
@@ -145,6 +161,23 @@ namespace FundingSouqExercise.Services.Implementation
             };
         }
 
+        public async Task<ResultWrapper<List<ClientServiceModel>>> GetClients(PagingParameters pagingParameters)
+        {
+            var resultPagedList = clientRepository.GetClients(pagingParameters);
+            var resultList = new List<ClientServiceModel>();
+
+            foreach (var client in resultPagedList)
+            {
+                resultList.Add(ClientToClientServiceModel(client));
+            }
+
+            return new ResultWrapper<List<ClientServiceModel>>
+            {
+                Status = ResultCodeEnum.Code200Success,
+                Value = resultList
+            };
+        }
+
         #region Private Methods
         private ClientServiceModel ClientToClientServiceModel(Client client)
         {
@@ -165,7 +198,7 @@ namespace FundingSouqExercise.Services.Implementation
                 ZipCode = client.ZipCode
             };
             return clientServiceModel;
-        } 
+        }
         #endregion
     }
 }

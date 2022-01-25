@@ -1,5 +1,7 @@
 ﻿using FundingSouqExercise.Data.Abstraction;
 using FundingSouqExercise.Data.Domain.POCO;
+using FundingSouqExercise.Models;
+using FundingSouqExercise.Models.Pagination;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -23,6 +25,11 @@ namespace FundingSouqExercise.Data.Implementation
         public IQueryable<Client> GetClients()
         {
             throw new NotImplementedException();
+        }
+        public PagedList<Client> GetClients(PagingParameters pagingParameter)
+        {
+            var pagedList = PagedList<Client>.GetPagedList(GetAll().OrderBy(c => c.Id), pagingParameter.PageNumber, pagingParameter.PageSize);
+            return pagedList;
         }
     }
 }

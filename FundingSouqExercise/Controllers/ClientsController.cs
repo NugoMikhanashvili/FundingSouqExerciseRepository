@@ -23,7 +23,7 @@ namespace FundingSouqExercise.Controllers
         }
 
         [HttpPost("create")]
-        [Authorize]
+        //[Authorize]
         public async Task<IActionResult> Create(ClientDTO clientDto)
         {
             try
@@ -92,8 +92,26 @@ namespace FundingSouqExercise.Controllers
                 {
                     return BadRequest(result.Status.ToString());
                 }
-                return Ok(result);
+                return Ok($"Count: {result.Value.Count} \n {result}");
+            }
+            catch (Exception)
+            {
+                return StatusCode(500);
+            }
+        }
 
+        [HttpGet("getclients")]
+        //[Authorize]
+        public async Task<IActionResult> GetClients([FromQuery] PagingParameters pagingParameters)
+        {
+            try
+            {
+                var result = await clientService.GetClients(pagingParameters);
+                if (result.Status != Common.ResultCodeEnum.Code200Success)
+                {
+                    return BadRequest(result.Status.ToString());
+                }
+                return Ok(result);
             }
             catch (Exception)
             {
@@ -103,7 +121,7 @@ namespace FundingSouqExercise.Controllers
 
         [HttpDelete("deleteclient/{personalId}")]
         [Authorize]
-        public async Task<IActionResult> DeleteClient(int personalId)
+        public async Task<IActionResult> DeleteClient(string personalId)
         {
             try
             {

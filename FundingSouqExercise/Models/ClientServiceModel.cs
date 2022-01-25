@@ -11,14 +11,14 @@ namespace FundingSouqExercise.Models
         public string Firstname { get; set; }
         public string Lastname { get; set; }
         public string Sex { get; set; }
-        public int PersonalId { get; set; }
+        public string PersonalId { get; set; }
         public string ProfilePhoto { get; set; }
         public string Email { get; set; }
-        public int MobileNumber { get; set; }
+        public string MobileNumber { get; set; }
         public string Country { get; set; }
         public string City { get; set; }
         public string Street { get; set; }
-        public int ZipCode { get; set; }
+        public string ZipCode { get; set; }
 
     }
 }

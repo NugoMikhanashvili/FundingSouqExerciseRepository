@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FundingSouqExercise.Migrations
 {
     [DbContext(typeof(FoundingSouqExerciseDbContext))]
-    [Migration("20220124150159_init")]
+    [Migration("20220125104701_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -43,11 +43,11 @@ namespace FundingSouqExercise.Migrations
                     b.Property<string>("Lastname")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("MobileNumber")
-                        .HasColumnType("int");
+                    b.Property<string>("MobileNumber")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PersonalId")
-                        .HasColumnType("int");
+                    b.Property<string>("PersonalId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ProfilePhoto")
                         .HasColumnType("nvarchar(max)");
@@ -58,8 +58,8 @@ namespace FundingSouqExercise.Migrations
                     b.Property<string>("Street")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ZipCode")
-                        .HasColumnType("int");
+                    b.Property<string>("ZipCode")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

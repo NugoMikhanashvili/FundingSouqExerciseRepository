@@ -41,11 +41,11 @@ namespace FundingSouqExercise.Migrations
                     b.Property<string>("Lastname")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("MobileNumber")
-                        .HasColumnType("int");
+                    b.Property<string>("MobileNumber")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PersonalId")
-                        .HasColumnType("int");
+                    b.Property<string>("PersonalId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ProfilePhoto")
                         .HasColumnType("nvarchar(max)");
@@ -56,8 +56,8 @@ namespace FundingSouqExercise.Migrations
                     b.Property<string>("Street")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ZipCode")
-                        .HasColumnType("int");
+                    b.Property<string>("ZipCode")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

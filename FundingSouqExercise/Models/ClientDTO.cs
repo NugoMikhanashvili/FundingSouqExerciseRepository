@@ -19,7 +19,7 @@ namespace FundingSouqExercise.Models
         [Required]
         [MinLength(11)]
         [MaxLength(11)]
-        public int PersonalId { get; set; }
+        public string PersonalId { get; set; }
         [Required]
         public string ProfilePhoto { get; set; }
         [Required]
@@ -27,7 +27,7 @@ namespace FundingSouqExercise.Models
         public string Email { get; set; }
         [Required]
         [Phone]
-        public int MobileNumber { get; set; }
+        public string MobileNumber { get; set; }
         [Required]
         public string Country { get; set; }
         [Required]
@@ -35,6 +35,6 @@ namespace FundingSouqExercise.Models
         [Required]
         public string Street { get; set; }
         [Required]
-        public int ZipCode { get; set; }
+        public string ZipCode { get; set; }
     }
 }
