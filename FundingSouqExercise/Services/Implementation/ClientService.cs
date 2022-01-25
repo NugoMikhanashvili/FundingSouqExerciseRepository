@@ -58,7 +58,6 @@ namespace FundingSouqExercise.Services.Implementation
 
             return result;
         }
-
         public async Task<ResultWrapper<ClientServiceModel>> DeleteCLient(string personalId)
         {
             var client = clientRepository.Get(x => x.PersonalId == personalId).FirstOrDefault();
@@ -75,7 +74,6 @@ namespace FundingSouqExercise.Services.Implementation
                 Status = ResultCodeEnum.Code200Success,
             };
         }
-
         public async Task<ResultWrapper<ClientServiceModel>> UpdateClient(ClientDTO clientDto)
         {
             var client = clientRepository.Get(x => x.PersonalId == clientDto.PersonalId).FirstOrDefault();
@@ -108,7 +106,6 @@ namespace FundingSouqExercise.Services.Implementation
                 Value = ClientToClientServiceModel(newClient)
             };
         }
-
         public async Task<ResultWrapper<ClientServiceModel>> GetClient(string personalId)
         {
             var client = clientRepository.Get(x => x.PersonalId == personalId).FirstOrDefault();
@@ -139,7 +136,6 @@ namespace FundingSouqExercise.Services.Implementation
                 Value = ClientToClientServiceModel(client)
             };
         }
-
         public async Task<ResultWrapper<List<ClientServiceModel>>> GetClients()
         {
             var clients = clientRepository.GetAll().ToList();
@@ -160,7 +156,6 @@ namespace FundingSouqExercise.Services.Implementation
                 Value = clientsServiceModel
             };
         }
-
         public async Task<ResultWrapper<List<ClientServiceModel>>> GetClients(PagingParameters pagingParameters)
         {
             var resultPagedList = clientRepository.GetClients(pagingParameters);

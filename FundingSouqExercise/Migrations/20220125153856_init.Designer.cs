@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FundingSouqExercise.Migrations
 {
     [DbContext(typeof(FoundingSouqExerciseDbContext))]
-    [Migration("20220125104701_init")]
+    [Migration("20220125153856_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -81,20 +81,25 @@ namespace FundingSouqExercise.Migrations
                     b.ToTable("Roles");
                 });
 
-            modelBuilder.Entity("FundingSouqExercise.Data.Domain.POCO.SearchParameter", b =>
+            modelBuilder.Entity("FundingSouqExercise.Data.Domain.POCO.SearchedParameter", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Parameter")
+                    b.Property<string>("ParameterName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ParameterValue")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("SearchedParameters");
                 });
@@ -123,6 +128,15 @@ namespace FundingSouqExercise.Migrations
                     b.HasIndex("UserRoleId");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("FundingSouqExercise.Data.Domain.POCO.SearchedParameter", b =>
+                {
+                    b.HasOne("FundingSouqExercise.Data.Domain.POCO.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("FundingSouqExercise.Data.Domain.POCO.User", b =>

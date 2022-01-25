@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace FundingSouqExercise.Data.Domain.POCO
 {
-    public class SearchParameter : BaseEntity
+    public class SearchedParameter : BaseEntity
     {
-        public string Parameter { get; set; }
-        [ForeignKey("UserId")]
+        public string ParameterName { get; set; }
+        public string ParameterValue { get; set; }
         public int UserId { get; set; }
 
-
-        ICollection<User> Users { get; set; }
+        [ForeignKey("UserId")]
+        public User User { get; set; }
     }
 }

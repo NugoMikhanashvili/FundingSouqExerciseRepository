@@ -10,7 +10,5 @@ namespace FundingSouqExercise.Data.Domain.POCO
     {
         public string RoleType { get; set; }
 
-
-        ICollection<User> Users { get; set; }
     }
 }

@@ -17,7 +17,7 @@ namespace FundingSouqExercise
         {
             var host = CreateHostBuilder(args).Build();
 
-            // Add user roles
+            // Seed user roles
             using (var scope = host.Services.CreateScope())
             {
                 var context = scope.ServiceProvider.GetService<FoundingSouqExerciseDbContext>();
@@ -26,7 +26,6 @@ namespace FundingSouqExercise
             }
             
             host.Run();
-            //CreateHostBuilder(args).Build().Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
