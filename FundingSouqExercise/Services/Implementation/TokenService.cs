@@ -9,6 +9,7 @@ using System.Text;
 using System.Security.Claims;
 using System.IdentityModel.Tokens.Jwt;
 using FundingSouqExercise.Services.Abstraction;
+using FundingSouqExercise.Data.Domain.POCO;
 
 namespace FundingSouqExercise.Services.Implementation
 {
@@ -20,11 +21,12 @@ namespace FundingSouqExercise.Services.Implementation
             _key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["TokenKey"]));
         }
 
-        public string CreateToken(UserLoginDTO userLoginDto)
+        public string CreateToken(User user)
         {
             var claims = new List<Claim>
             {
-                new Claim(JwtRegisteredClaimNames.NameId, userLoginDto.Username),
+                new Claim("username", user.Username),
+                new Claim("usertype",user.UserType.Type),
             };
 
             var creds = new SigningCredentials(_key, SecurityAlgorithms.HmacSha512Signature);

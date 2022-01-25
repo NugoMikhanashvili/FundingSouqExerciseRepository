@@ -1,4 +1,5 @@
-﻿using FundingSouqExercise.Models;
+﻿using FundingSouqExercise.Data.Domain.POCO;
+using FundingSouqExercise.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,6 @@ namespace FundingSouqExercise.Services.Abstraction
 {
     public interface ITokenService
     {
-        public string CreateToken(UserLoginDTO userLoginDto);
+        public string CreateToken(User userLoginDto);
     }
 }

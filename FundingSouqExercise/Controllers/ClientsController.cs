@@ -1,5 +1,6 @@
 ﻿using FundingSouqExercise.Data.Domain.POCO;
 using FundingSouqExercise.Models;
+using FundingSouqExercise.Services;
 using FundingSouqExercise.Services.Abstraction;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -25,7 +26,7 @@ namespace FundingSouqExercise.Controllers
         }
 
         [HttpPost("create")]
-        //[Authorize]
+        [Authorize(Policy = "Admin")]
         public async Task<IActionResult> Create(ClientDTO clientDto)
         {
             try
@@ -44,7 +45,7 @@ namespace FundingSouqExercise.Controllers
         }
 
         [HttpPut("update")]
-        [Authorize]
+        [Authorize(Policy = "Admin")]
         public async Task<IActionResult> Update(ClientDTO clientDto)
         {
             try
@@ -64,7 +65,7 @@ namespace FundingSouqExercise.Controllers
         }
 
         [HttpGet("getclient/{personalId}")]
-        [Authorize]
+        [Authorize(Policy = "Admin")]
         public async Task<IActionResult> GetClient(int personalId)
         {
             try
@@ -84,7 +85,7 @@ namespace FundingSouqExercise.Controllers
         }
 
         [HttpGet("getallclients")]
-        [Authorize]
+        [Authorize(Policy = "Admin")]
         public async Task<IActionResult> GetAllClients()
         {
             try
@@ -103,7 +104,7 @@ namespace FundingSouqExercise.Controllers
         }
 
         [HttpGet("getclients")]
-        //[Authorize]
+        [Authorize(Policy = "Admin")]
         public async Task<IActionResult> GetClients([FromQuery] PagingParameters pagingParameters)
         {
             try
@@ -122,7 +123,7 @@ namespace FundingSouqExercise.Controllers
         }
 
         [HttpDelete("deleteclient/{personalId}")]
-        [Authorize]
+        [Authorize(Policy = "Admin")]
         public async Task<IActionResult> DeleteClient(string personalId)
         {
             try
@@ -141,7 +142,7 @@ namespace FundingSouqExercise.Controllers
         }
 
         [HttpPost("createclientaccount")]
-        [Authorize]
+        [Authorize(Policy = "Admin")]
         public async Task<IActionResult> CreateClientAccount([FromQuery] ClientAccountServiceModel clientAccount)
         {
             try

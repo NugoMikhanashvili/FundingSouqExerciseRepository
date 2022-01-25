@@ -41,7 +41,8 @@ namespace FundingSouqExercise.Controllers
                     return BadRequest(result.Status.ToString());
                 }
                 // Create token
-                var token = tokenService.CreateToken(userLoginDto);
+                var user = result.Value;
+                var token = tokenService.CreateToken(user);
 
                 // Produce response
                 return Ok($"User successfully logged in. \n Username: {userLoginDto.Username} \n Token: Bearer {token}");
@@ -52,6 +53,7 @@ namespace FundingSouqExercise.Controllers
             }
         }
 
+        [HttpPost("logout")]
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync("");

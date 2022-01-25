@@ -18,7 +18,7 @@ namespace FundingSouqExercise.Data.Implementation
         }
         public IQueryable<User> GetUser(int userId)
         {
-            return dbContext.Set<User>().Where(u => u.Id == userId).Include(u => u.Role);
+            return dbContext.Set<User>().Where(u => u.Id == userId).Include(u => u.UserType);
         }
         public IQueryable<User> GetUsers()
         {

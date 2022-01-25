@@ -24,7 +24,7 @@ namespace FundingSouqExercise.Services.Implementation
         public async Task<ResultWrapper<User>> VerifyUser(UserLoginDTO userLoginDto)
         {
             // Check user
-            var user = dbContext.Set<User>().FirstOrDefault(x => x.Username == userLoginDto.Username);
+            var user = dbContext.Set<User>().Where(x => x.Username == userLoginDto.Username).Include(y=>y.UserType).FirstOrDefault();
             if (user == null) return new ResultWrapper<User>
             {
                 Status = ResultCodeEnum.UserNotFound,

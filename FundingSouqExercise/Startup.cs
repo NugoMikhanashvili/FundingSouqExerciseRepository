@@ -44,6 +44,13 @@ namespace FundingSouqExercise
                         ValidateAudience = false
                     };
                 });
+
+            services.AddAuthorization(config =>
+            {
+                config.AddPolicy(Policies.Admin, Policies.AdminPolicy());
+                config.AddPolicy(Policies.Guest, Policies.GuestPolicy());
+            });
+
             services.AddControllers();
             services.AddDbContext<FoundingSouqExerciseDbContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("DbConnectionString")));
             services.AddScoped<DbContext, FoundingSouqExerciseDbContext>();

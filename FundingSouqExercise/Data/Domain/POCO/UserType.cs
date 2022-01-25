@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace FundingSouqExercise.Data.Domain.POCO
 {
-    public class Role : BaseEntity
+    public class UserType : BaseEntity
     {
-        public string RoleType { get; set; }
-
+        public string Type { get; set; }
     }
 }

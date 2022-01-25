@@ -62,7 +62,7 @@ namespace FundingSouqExercise.Controllers
         }
 
         [HttpPost("register")]
-        //[Authorize]
+        [AllowAnonymous]
         public async Task<IActionResult> RegisterUser(UserRegisterDTO userRegisterDto)
         {
             try

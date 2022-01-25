@@ -12,10 +12,10 @@ namespace FundingSouqExercise.Data.Domain.POCO
         public string Username { get; set; }
         public byte[] PasswordHash { get; set; }
         public byte[] PasswordSalt { get; set; }
-        public int UserRoleId { get; set; }
+        public int UserTypeId { get; set; }
 
-        [ForeignKey("UserRoleId")]
-        public Role Role { get; set; }
+        [ForeignKey("UserTypeId")]
+        public UserType UserType { get; set; }
 
     }
 }

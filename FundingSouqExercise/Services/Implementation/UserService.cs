@@ -44,7 +44,7 @@ namespace FundingSouqExercise.Services.Implementation
         }
         public async Task<ResultWrapper<UserServiceModel>> GetUser(int userId)
         {
-            var user = userRepository.Get(x=>x.Id == userId).Include(y=>y.Role).FirstOrDefault();
+            var user = userRepository.Get(x=>x.Id == userId).Include(y=>y.UserType).FirstOrDefault();
             if (user == null) return new ResultWrapper<UserServiceModel>
             {
                 Status = ResultCodeEnum.UserNotFound,
@@ -71,7 +71,7 @@ namespace FundingSouqExercise.Services.Implementation
         }
         public async Task<ResultWrapper<List<UserServiceModel>>> GetUsers()
         {
-            var users = userRepository.GetAll().Include(x=>x.Role);
+            var users = userRepository.GetAll().Include(x=>x.UserType);
             List<UserServiceModel> usersServiceModel = new List<UserServiceModel>();
             foreach (var user in users)
             {
@@ -96,7 +96,7 @@ namespace FundingSouqExercise.Services.Implementation
             var newUser = new User
             {
                 Username = userRegisterDto.Username,
-                UserRoleId = userRegisterDto.RoleId,
+                UserTypeId = userRegisterDto.RoleId,
                 PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(userRegisterDto.Password)),
                 PasswordSalt = hmac.Key,
             };
@@ -104,7 +104,7 @@ namespace FundingSouqExercise.Services.Implementation
             userRepository.Create(newUser);
             userRepository.Save();
 
-            var createdUser = userRepository.Get(x => x.Username == newUser.Username).Include(y => y.Role).FirstOrDefault();
+            var createdUser = userRepository.Get(x => x.Username == newUser.Username).Include(y => y.UserType).FirstOrDefault();
             var createdUserServiceModel = UserToUserServiceModel(createdUser);
             return new ResultWrapper<UserServiceModel>
             {
@@ -125,7 +125,7 @@ namespace FundingSouqExercise.Services.Implementation
             {
                 Id = userUpdateDto.Id,
                 Username = userUpdateDto.Username,
-                UserRoleId = userUpdateDto.RoleId,
+                UserTypeId = userUpdateDto.RoleId,
                 PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(userUpdateDto.Password)),
                 PasswordSalt = hmac.Key,
             };
@@ -145,8 +145,8 @@ namespace FundingSouqExercise.Services.Implementation
             {
                 Id = user.Id,
                 Username = user.Username,
-                UserRoleId = user.UserRoleId,
-                UserRoleType = user.Role.RoleType
+                UserRoleId = user.UserTypeId,
+                UserRoleType = user.UserType.Type
             };
 
             return userServiceModel;

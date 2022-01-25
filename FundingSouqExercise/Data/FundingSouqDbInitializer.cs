@@ -10,25 +10,25 @@ namespace FundingSouqExercise.Data
     {
         public static void SeedUserRoles(FoundingSouqExerciseDbContext context)
         {
-            var userRoles = new List<Role>
+            var userRoles = new List<UserType>
             {
-                new Role
+                new UserType
                 {
-                    RoleType = "Admin"
+                    Type = "Admin"
                 },
 
-                new Role
+                new UserType
                 {
-                    RoleType = "Guest"
+                    Type = "Guest"
                 }
             };
 
             context.Database.EnsureCreated();
-            if (!context.Roles.Any(x=>x.RoleType == "Admin") || !context.Roles.Any(x => x.RoleType == "Guest"))
+            if (!context.UserTypes.Any(x=>x.Type == "Admin") || !context.UserTypes.Any(x => x.Type == "Guest"))
             {
                 foreach (var role in userRoles)
                 {
-                    context.Roles.AddRange(userRoles);
+                    context.UserTypes.AddRange(userRoles);
                 }
             }
             context.SaveChanges();
