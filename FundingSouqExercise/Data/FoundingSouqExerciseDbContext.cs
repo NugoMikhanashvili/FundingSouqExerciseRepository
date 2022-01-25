@@ -21,29 +21,13 @@ namespace FundingSouqExercise.Data
         }
         public FoundingSouqExerciseDbContext(DbContextOptions<FoundingSouqExerciseDbContext> options) : base(options)
         {
-            //if (Roles.Count() == 0)
-            //{
-            //    List<Role> userRoles = new List<Role>()
-            //    {
-            //        new Role
-            //        {
-            //            RoleType = "Admin"
-            //        },
-            //        new Role
-            //        {
-            //            RoleType = "Guest"
-            //        }
-            //    };
 
-            //    Roles.AddRange(userRoles);
-            //    SaveChanges();
-            //}
         }
 
-        DbSet<User> Users { get; set; }
-        DbSet<Client> Clients { get; set; }
-        DbSet<Role> Roles { get; set; }
-        DbSet<SearchParameter> SearchedParameters { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Client> Clients { get; set; }
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<SearchParameter> SearchedParameters { get; set; }
 
     }
 }
