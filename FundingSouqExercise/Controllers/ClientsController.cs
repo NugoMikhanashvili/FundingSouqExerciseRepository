@@ -16,10 +16,12 @@ namespace FundingSouqExercise.Controllers
     public class ClientsController : BaseApiController
     {
         private readonly IClientService clientService;
+        private readonly IClientAccountService clientAccountService;
 
-        public ClientsController(IClientService clientService)
+        public ClientsController(IClientService clientService, IClientAccountService clientAccountService)
         {
             this.clientService = clientService;
+            this.clientAccountService = clientAccountService;
         }
 
         [HttpPost("create")]
@@ -135,6 +137,25 @@ namespace FundingSouqExercise.Controllers
             catch (Exception)
             {
                 return StatusCode(500);
+            }
+        }
+
+        [HttpPost("createclientaccount")]
+        [Authorize]
+        public async Task<IActionResult> CreateClientAccount([FromQuery] ClientAccountServiceModel clientAccount)
+        {
+            try
+            {
+                var result = await clientAccountService.Create(clientAccount.ClientId, clientAccount.AccountName);
+                if (result.Status != Common.ResultCodeEnum.Code200Success)
+                {
+                    return BadRequest(result.Status.ToString());
+                }
+                return Ok("New client account creates succesfully.");
+            }
+            catch (Exception exc)
+            {
+                return BadRequest(exc.Message);
             }
         }
     }

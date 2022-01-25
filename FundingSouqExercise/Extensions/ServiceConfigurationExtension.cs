@@ -12,6 +12,7 @@ namespace FundingSouqExercise.Extensions
     {
         public static void RegisterServices(this IServiceCollection services)
         {
+            services.AddScoped<IClientAccountService, ClientAccountService>();
             services.AddScoped<ISearchService, SearchService>();
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IUserService, UserService>();
