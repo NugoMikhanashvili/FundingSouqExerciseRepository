@@ -13,7 +13,7 @@ namespace FundingSouqExercise.Services.Abstraction
         public Task<ResultWrapper<ClientServiceModel>> GetClient(int id);
         public Task<ResultWrapper<List<ClientServiceModel>>> GetClients();
         public Task<ResultWrapper<List<ClientServiceModel>>> GetClients(PagingParameters pagingParameters);
-        public Task<ResultWrapper<ClientServiceModel>> DeleteCLient(string personalId);
+        public Task<ResultWrapper<ClientServiceModel>> DeleteCLient(int clientId);
         public Task<ResultWrapper<ClientServiceModel>> UpdateClient(ClientDTO clientDto);
 
     }

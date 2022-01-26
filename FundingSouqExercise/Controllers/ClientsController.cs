@@ -64,13 +64,13 @@ namespace FundingSouqExercise.Controllers
 
         }
 
-        [HttpGet("getclient/{personalId}")]
+        [HttpGet("getclient/{clientId}")]
         [Authorize(Policy = "Admin")]
-        public async Task<IActionResult> GetClient(int personalId)
+        public async Task<IActionResult> GetClient(int clientId)
         {
             try
             {
-                var result = await clientService.GetClient(personalId);
+                var result = await clientService.GetClient(clientId);
                 if (result.Status != Common.ResultCodeEnum.Code200Success)
                 {
                     return BadRequest(result.Status.ToString());
@@ -122,18 +122,18 @@ namespace FundingSouqExercise.Controllers
             }
         }
 
-        [HttpDelete("deleteclient/{personalId}")]
+        [HttpDelete("delete/{clientId}")]
         [Authorize(Policy = "Admin")]
-        public async Task<IActionResult> DeleteClient(string personalId)
+        public async Task<IActionResult> DeleteClient(int clientId)
         {
             try
             {
-                var result = await clientService.DeleteCLient(personalId);
+                var result = await clientService.DeleteCLient(clientId);
                 if (result.Status != Common.ResultCodeEnum.Code200Success)
                 {
                     return BadRequest(result.Status.ToString());
                 }
-                return Ok();
+                return Ok(result.Status.ToString());
             }
             catch (Exception)
             {

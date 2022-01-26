@@ -17,6 +17,6 @@ namespace FundingSouqExercise.Models
         public string Password { get; set; }
 
         [Required]
-        public int RoleId { get; set; }
+        public int UserTypeId { get; set; }
     }
 }

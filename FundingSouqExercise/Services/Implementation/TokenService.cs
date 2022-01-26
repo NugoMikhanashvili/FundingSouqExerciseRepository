@@ -26,7 +26,8 @@ namespace FundingSouqExercise.Services.Implementation
             var claims = new List<Claim>
             {
                 new Claim("username", user.Username),
-                new Claim("usertype",user.UserType.Type),
+                new Claim("usertype", user.UserType.Type),
+                new Claim(ClaimTypes.Role, user.UserType.Type)
             };
 
             var creds = new SigningCredentials(_key, SecurityAlgorithms.HmacSha512Signature);

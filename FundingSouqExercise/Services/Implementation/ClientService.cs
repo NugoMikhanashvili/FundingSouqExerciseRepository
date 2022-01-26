@@ -58,9 +58,9 @@ namespace FundingSouqExercise.Services.Implementation
 
             return result;
         }
-        public async Task<ResultWrapper<ClientServiceModel>> DeleteCLient(string personalId)
+        public async Task<ResultWrapper<ClientServiceModel>> DeleteCLient(int clientId)
         {
-            var client = clientRepository.Get(x => x.PersonalId == personalId).FirstOrDefault();
+            var client = clientRepository.Get(x => x.Id == clientId).FirstOrDefault();
             if (client == null) return new ResultWrapper<ClientServiceModel>
             {
                 Status = ResultCodeEnum.ClientNotFound,
@@ -82,28 +82,25 @@ namespace FundingSouqExercise.Services.Implementation
                 Status = ResultCodeEnum.ClientNotFound,
                 Value = null
             };
-            var newClient = new Client
-            {
-                Id = client.Id,
-                Firstname = clientDto.Firstname,
-                Lastname = clientDto.Lastname,
-                Sex = clientDto.Sex,
-                PersonalId = clientDto.PersonalId,
-                ProfilePhoto = clientDto.ProfilePhoto,
-                Email = clientDto.Email,
-                MobileNumber = clientDto.MobileNumber,
-                Country = clientDto.Country,
-                City = clientDto.City,
-                Street = clientDto.Street,
-                ZipCode = clientDto.ZipCode
-            };
-            clientRepository.Update(newClient);
+
+            client.Firstname = clientDto.Firstname;
+            client.Lastname = clientDto.Lastname;
+            client.Sex = clientDto.Sex;
+            client.PersonalId = clientDto.PersonalId;
+            client.ProfilePhoto = clientDto.ProfilePhoto;
+            client.Email = clientDto.Email;
+            client.MobileNumber = clientDto.MobileNumber;
+            client.Country = clientDto.Country;
+            client.City = clientDto.City;
+            client.Street = clientDto.Street;
+            client.ZipCode = clientDto.ZipCode;
+
             clientRepository.Save();
 
             return new ResultWrapper<ClientServiceModel>
             {
                 Status = ResultCodeEnum.Code200Success,
-                Value = ClientToClientServiceModel(newClient)
+                Value = ClientToClientServiceModel(client)
             };
         }
         public async Task<ResultWrapper<ClientServiceModel>> GetClient(string personalId)

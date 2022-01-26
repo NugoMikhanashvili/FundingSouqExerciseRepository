@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FundingSouqExercise.Migrations
 {
     [DbContext(typeof(FoundingSouqExerciseDbContext))]
-    [Migration("20220125193232_init")]
+    [Migration("20220126064836_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

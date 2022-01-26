@@ -71,7 +71,7 @@ namespace FundingSouqExercise.Controllers
                 if (result.Value == null) return BadRequest(result.Status.ToString());
 
                 return Ok($"User registered successfully. \n UserId: {result.Value.Id} \n UserName: {result.Value.Username} \n " +
-                          $"RoleId: Role: {result.Value.UserRoleId} \nRole: {result.Value.UserRoleType}");
+                          $"RoleId: Role: {result.Value.UserTypeId} \nRole: {result.Value.UserRoleType}");
             }
             catch (Exception)
             {
@@ -92,7 +92,7 @@ namespace FundingSouqExercise.Controllers
                 }
 
                 return Ok($"User updated successfully. \n UserId: {userUpdateDto.Id} \n Username: {userUpdateDto.Username} " +
-                          $"\n UserRoleId: {userUpdateDto.RoleId}");
+                          $"\n UserRoleId: {userUpdateDto.UserTypeId}");
             }
             catch (Exception)
             {
@@ -112,7 +112,7 @@ namespace FundingSouqExercise.Controllers
                 var response = await _userService.DeleteUser(result.Value.Id);
                 if (response.Status != Common.ResultCodeEnum.Code200Success) return BadRequest(response.Status);
 
-                return Ok(response.Status);
+                return Ok(response.Status.ToString());
             }
             catch (Exception)
             {

@@ -1,0 +1,433 @@
+{
+	"info": {
+		"_postman_id": "edda3ead-732c-4559-9e53-ba0450a7d9d4",
+		"name": "FundingSouqExercise",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "UserController",
+			"item": [
+				{
+					"name": "Register User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"usrname1\",\r\n    \"password\": \"psswrd1234\",\r\n    \"usertypeid\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44318/users/register",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44318",
+							"path": [
+								"users",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44318/users/getuser/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44318",
+							"path": [
+								"users",
+								"getuser",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44318/users/getallusers",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44318",
+							"path": [
+								"users",
+								"getallusers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"username\": \"usrnamemodified\",\r\n    \"password\":\"psw123456modified\",\r\n    \"usertypeid\": \"2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44318/users/update",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44318",
+							"path": [
+								"users",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzcm5hbWUxIiwidXNlcnR5cGUiOiJBZG1pbiIsInJvbGUiOiJBZG1pbiIsIm5iZiI6MTY0MzE4MDIxMywiZXhwIjoxNjQzMjY2NjEzLCJpYXQiOjE2NDMxODAyMTN9.r-NuNlcf9Bu_Suxd1LxM_DjRqJQBPkEQG3_-mGch88nWLMuvbMKbvnIl16PBn4WwtHlAXQ4URAqmrAZav5O7Wg",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "https://localhost:44318/users/delete/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44318",
+							"path": [
+								"users",
+								"delete",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ClientController",
+			"item": [
+				{
+					"name": "Create Client",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzcm5hbWUxIiwidXNlcnR5cGUiOiJBZG1pbiIsInJvbGUiOiJBZG1pbiIsIm5iZiI6MTY0MzE4MDM0NiwiZXhwIjoxNjQzMjY2NzQ2LCJpYXQiOjE2NDMxODAzNDZ9.8fuKTR5XuGvEB91PImPooKzfqqerWYnlCwcLUovMjdUvgqeQ9eKuKrWip-eOMjLNNSmjp-PS9aXvJHJ4zweW5w",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\": \"clientfirstname\",\r\n    \"lastname\": \"clientlastname\",\r\n    \"sex\": \"male\",\r\n    \"personalId\": \"11111111111\",\r\n    \"profilePhoto\": \"www.google.com\",\r\n    \"email\": \"coolguy@mail.cool\",\r\n    \"mobileNumber\": \"995\",\r\n    \"country\": \"canada\",\r\n    \"city\": \"toronto\",\r\n    \"street\": \"kostava\",\r\n    \"zipCode\": \"101\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44318/clients/create",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44318",
+							"path": [
+								"clients",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Client",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzcm5hbWU0IiwidXNlcnR5cGUiOiJHdWVzdCIsInJvbGUiOiJHdWVzdCIsIm5iZiI6MTY0MzE3OTU0NSwiZXhwIjoxNjQzMjY1OTQ1LCJpYXQiOjE2NDMxNzk1NDV9.hiAGLR0FJrdWI-dzJUmEWD7yPLb1Gr1Oo-znbzJcS-clOrCZlaHMyTCTPQ4xnOhEuBY-mixRvb5SOHetVCKsCQ",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://localhost:44318/clients/getclient/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44318",
+							"path": [
+								"clients",
+								"getclient",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Clients By Page",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44318/clients/getclients?pagenumber=1&pagesize=2",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44318",
+							"path": [
+								"clients",
+								"getclients"
+							],
+							"query": [
+								{
+									"key": "pagenumber",
+									"value": "1"
+								},
+								{
+									"key": "pagesize",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Clients",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				},
+				{
+					"name": "Update Client",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\": \"clientfirstnamemodified\",\r\n    \"lastname\": \"clientlastnamemodified\",\r\n    \"sex\": \"male\",\r\n    \"personalId\": \"11111111111\",\r\n    \"profilePhoto\": \"www.google.com\",\r\n    \"email\": \"coolguy@mail.cool\",\r\n    \"mobileNumber\": \"995\",\r\n    \"country\": \"canada\",\r\n    \"city\": \"toronto\",\r\n    \"street\": \"kostava\",\r\n    \"zipCode\": \"101\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44318/clients/update",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44318",
+							"path": [
+								"clients",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzcm5hbWUxIiwidXNlcnR5cGUiOiJBZG1pbiIsInJvbGUiOiJBZG1pbiIsIm5iZiI6MTY0MzE4MDM0NiwiZXhwIjoxNjQzMjY2NzQ2LCJpYXQiOjE2NDMxODAzNDZ9.8fuKTR5XuGvEB91PImPooKzfqqerWYnlCwcLUovMjdUvgqeQ9eKuKrWip-eOMjLNNSmjp-PS9aXvJHJ4zweW5w",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "https://localhost:44318/clients/delete/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44318",
+							"path": [
+								"clients",
+								"delete",
+								"1"
+							],
+							"query": [
+								{
+									"key": "autho",
+									"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzcm5hbWUxIiwidXNlcnR5cGUiOiJBZG1pbiIsInJvbGUiOiJBZG1pbiIsIm5iZiI6MTY0MzE4MDM0NiwiZXhwIjoxNjQzMjY2NzQ2LCJpYXQiOjE2NDMxODAzNDZ9.8fuKTR5XuGvEB91PImPooKzfqqerWYnlCwcLUovMjdUvgqeQ9eKuKrWip-eOMjLNNSmjp-PS9aXvJHJ4zweW5w",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Client Account",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44318/clients/createclientaccount?clientid=1&accountname=simpleaccount1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44318",
+							"path": [
+								"clients",
+								"createclientaccount"
+							],
+							"query": [
+								{
+									"key": "clientid",
+									"value": "1"
+								},
+								{
+									"key": "accountname",
+									"value": "simpleaccount1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "AccountController",
+			"item": [
+				{
+					"name": "Log In",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"usrname1\",\r\n    \"password\": \"psswrd1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44318/account/login",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44318",
+							"path": [
+								"account",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "HistoryController",
+			"item": [
+				{
+					"name": "Get Last Parameters",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44318/history/lastparameters/2",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44318",
+							"path": [
+								"history",
+								"lastparameters",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "apikey"
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

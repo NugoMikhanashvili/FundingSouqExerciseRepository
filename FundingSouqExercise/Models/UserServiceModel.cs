@@ -9,7 +9,7 @@ namespace FundingSouqExercise.Models
     {
         public int Id { get; set; }
         public string Username { get; set; }
-        public int UserRoleId { get; set; }
+        public int UserTypeId { get; set; }
         public string UserRoleType { get; set; }
 
     }

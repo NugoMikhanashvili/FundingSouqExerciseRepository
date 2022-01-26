@@ -96,7 +96,7 @@ namespace FundingSouqExercise.Services.Implementation
             var newUser = new User
             {
                 Username = userRegisterDto.Username,
-                UserTypeId = userRegisterDto.RoleId,
+                UserTypeId = userRegisterDto.UserTypeId,
                 PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(userRegisterDto.Password)),
                 PasswordSalt = hmac.Key,
             };
@@ -121,16 +121,13 @@ namespace FundingSouqExercise.Services.Implementation
             };
 
             var hmac = new HMACSHA512();
-            var newUser = new User
-            {
-                Id = userUpdateDto.Id,
-                Username = userUpdateDto.Username,
-                UserTypeId = userUpdateDto.RoleId,
-                PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(userUpdateDto.Password)),
-                PasswordSalt = hmac.Key,
-            };
 
-            userRepository.Update(newUser);
+            user.Id = userUpdateDto.Id;
+            user.Username = userUpdateDto.Username;
+            user.UserTypeId = userUpdateDto.UserTypeId;
+            user.PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(userUpdateDto.Password));
+            user.PasswordSalt = hmac.Key;
+
             userRepository.Save();
             return new ResultWrapper<UserServiceModel>
             {
@@ -145,7 +142,7 @@ namespace FundingSouqExercise.Services.Implementation
             {
                 Id = user.Id,
                 Username = user.Username,
-                UserRoleId = user.UserTypeId,
+                UserTypeId = user.UserTypeId,
                 UserRoleType = user.UserType.Type
             };
 
