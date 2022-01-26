@@ -8,6 +8,5 @@ namespace FundingSouqExercise.Data.Abstraction
 {
     public interface ISearchedParameterRepository : IBaseRepository<SearchedParameter>
     {
-        List<SearchedParameter> GetSearchedParameters(int userId);
     }
 }

@@ -16,18 +16,5 @@ namespace FundingSouqExercise.Data.Implementation
         {
             this.dbContext = dbContext;
         }
-
-        public List<SearchedParameter> GetSearchedParameters(int userId)
-        {
-            var result = Get().Where(x => x.UserId == userId).OrderByDescending(y => y.Id);
-            int count = result.Count();
-            if (count > 3)
-            {
-                var lastThree = result.Skip(count - 3).ToList();
-                return lastThree;
-            }
-
-            return result.ToList();
-        }
     }
 }

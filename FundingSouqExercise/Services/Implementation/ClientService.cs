@@ -153,23 +153,7 @@ namespace FundingSouqExercise.Services.Implementation
                 Value = clientsServiceModel
             };
         }
-        public async Task<ResultWrapper<List<ClientServiceModel>>> GetClients(PagingParameters pagingParameters)
-        {
-            var resultPagedList = clientRepository.GetClients(pagingParameters);
-            var resultList = new List<ClientServiceModel>();
-
-            foreach (var client in resultPagedList)
-            {
-                resultList.Add(ClientToClientServiceModel(client));
-            }
-
-            return new ResultWrapper<List<ClientServiceModel>>
-            {
-                Status = ResultCodeEnum.Code200Success,
-                Value = resultList
-            };
-        }
-        public async Task<ResultWrapper<List<ClientServiceModel>>> FilterClients(ClientServiceModel clientServiceModel)
+        public async Task<ResultWrapper<List<ClientServiceModel>>> GetClients(ClientServiceModel clientServiceModel, PagingParameters pagingParameters)
         {
             var filteredClients = clientRepository.GetAll();
 
@@ -218,8 +202,10 @@ namespace FundingSouqExercise.Services.Implementation
                 filteredClients = filteredClients.Where(x => x.ZipCode == clientServiceModel.ZipCode);
             }
 
+            var clientsPagedList = PagedList<Client>.GetPagedList(filteredClients.OrderBy(c => c.Id), pagingParameters.PageNumber, pagingParameters.PageSize);
+
             var clientServiceModelList = new List<ClientServiceModel>();
-            foreach (var client in filteredClients)
+            foreach (var client in clientsPagedList)
             {
                 clientServiceModelList.Add(ClientToClientServiceModel(client));
             }
@@ -235,6 +221,92 @@ namespace FundingSouqExercise.Services.Implementation
                 Value = clientServiceModelList
             };
         }
+
+
+        //public async Task<ResultWrapper<List<ClientServiceModel>>> GetClients(PagingParameters pagingParameters)
+        //{
+        //    var resultPagedList = clientRepository.GetClients(pagingParameters);
+        //    var resultList = new List<ClientServiceModel>();
+
+        //    foreach (var client in resultPagedList)
+        //    {
+        //        resultList.Add(ClientToClientServiceModel(client));
+        //    }
+
+        //    return new ResultWrapper<List<ClientServiceModel>>
+        //    {
+        //        Status = ResultCodeEnum.Code200Success,
+        //        Value = resultList
+        //    };
+        //}
+
+
+        //public async Task<ResultWrapper<List<ClientServiceModel>>> FilterClients(ClientServiceModel clientServiceModel)
+        //{
+        //    var filteredClients = clientRepository.GetAll();
+
+        //    if (clientServiceModel.Id != 0)
+        //    {
+        //        filteredClients = filteredClients.Where(x => x.Id == clientServiceModel.Id);
+        //    }
+        //    if (!string.IsNullOrEmpty(clientServiceModel.Firstname))
+        //    {
+        //        filteredClients = filteredClients.Where(x => x.Firstname == clientServiceModel.Firstname);
+        //    }
+        //    if (!string.IsNullOrEmpty(clientServiceModel.Lastname))
+        //    {
+        //        filteredClients = filteredClients.Where(x => x.Lastname == clientServiceModel.Lastname);
+        //    }
+        //    if (!string.IsNullOrEmpty(clientServiceModel.Sex))
+        //    {
+        //        filteredClients = filteredClients.Where(x => x.Sex == clientServiceModel.Sex);
+        //    }
+        //    if (!string.IsNullOrEmpty(clientServiceModel.PersonalId))
+        //    {
+        //        filteredClients = filteredClients.Where(x => x.PersonalId == clientServiceModel.PersonalId);
+        //    }
+        //    if (!string.IsNullOrEmpty(clientServiceModel.Email))
+        //    {
+        //        filteredClients = filteredClients.Where(x => x.Email == clientServiceModel.Email);
+        //    }
+        //    if (!string.IsNullOrEmpty(clientServiceModel.MobileNumber))
+        //    {
+        //        filteredClients = filteredClients.Where(x => x.MobileNumber == clientServiceModel.MobileNumber);
+        //    }
+        //    if (!string.IsNullOrEmpty(clientServiceModel.Country))
+        //    {
+        //        filteredClients = filteredClients.Where(x => x.Country == clientServiceModel.Country);
+        //    }
+        //    if (!string.IsNullOrEmpty(clientServiceModel.City))
+        //    {
+        //        filteredClients = filteredClients.Where(x => x.City == clientServiceModel.City);
+        //    }
+        //    if (!string.IsNullOrEmpty(clientServiceModel.Street))
+        //    {
+        //        filteredClients = filteredClients.Where(x => x.Street == clientServiceModel.Street);
+        //    }
+        //    if (!string.IsNullOrEmpty(clientServiceModel.ZipCode))
+        //    {
+        //        filteredClients = filteredClients.Where(x => x.ZipCode == clientServiceModel.ZipCode);
+        //    }
+
+        //    var clientServiceModelList = new List<ClientServiceModel>();
+        //    foreach (var client in filteredClients)
+        //    {
+        //        clientServiceModelList.Add(ClientToClientServiceModel(client));
+        //    }
+
+        //    if (clientServiceModelList.Count == 0) return new ResultWrapper<List<ClientServiceModel>>
+        //    {
+        //        Status = ResultCodeEnum.ClientNotFound,
+        //    };
+
+        //    return new ResultWrapper<List<ClientServiceModel>>
+        //    {
+        //        Status = ResultCodeEnum.Code200Success,
+        //        Value = clientServiceModelList
+        //    };
+        //}
 
         #region Private Methods
         private ClientServiceModel ClientToClientServiceModel(Client client)

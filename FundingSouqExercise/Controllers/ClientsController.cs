@@ -86,32 +86,13 @@ namespace FundingSouqExercise.Controllers
             }
         }
 
-        [HttpGet("getallclients")]
-        [Authorize(Policy = "Admin")]
-        public async Task<IActionResult> GetAllClients()
-        {
-            try
-            {
-                var result = await clientService.GetClients();
-                if (result.Status != Common.ResultCodeEnum.Code200Success)
-                {
-                    return BadRequest(result.Status.ToString());
-                }
-                return Ok(result);
-            }
-            catch (Exception)
-            {
-                return StatusCode(500);
-            }
-        }
-
         [HttpGet("getclients")]
         [Authorize(Policy = "Admin")]
-        public async Task<IActionResult> GetClients([FromQuery] PagingParameters pagingParameters)
+        public async Task<IActionResult> GetClients([FromQuery] ClientServiceModel clientServiceModel, [FromQuery] PagingParameters pagingParameters)
         {
             try
             {
-                var result = await clientService.GetClients(pagingParameters);
+                var result = await clientService.GetClients(clientServiceModel, pagingParameters);
                 if (result.Status != Common.ResultCodeEnum.Code200Success)
                 {
                     return BadRequest(result.Status.ToString());
@@ -124,24 +105,63 @@ namespace FundingSouqExercise.Controllers
             }
         }
 
-        [HttpGet("filter")]
-        [Authorize(Policy = "Admin")]
-        public async Task<IActionResult> FilterClients([FromBody] ClientServiceModel clientServiceModel)
-        {
-            try
-            {
-                var result = await clientService.FilterClients(clientServiceModel);
-                if (result.Status != Common.ResultCodeEnum.Code200Success)
-                {
-                    return BadRequest(result.Status.ToString());
-                }
-                return Ok(result);
-            }
-            catch (Exception)
-            {
-                return StatusCode(500);
-            }
-        }
+        //[HttpGet("getallclients")]
+        //[Authorize(Policy = "Admin")]
+        //public async Task<IActionResult> GetAllClients()
+        //{
+        //    try
+        //    {
+        //        var result = await clientService.GetClients();
+        //        if (result.Status != Common.ResultCodeEnum.Code200Success)
+        //        {
+        //            return BadRequest(result.Status.ToString());
+        //        }
+        //        return Ok(result);
+        //    }
+        //    catch (Exception)
+        //    {
+        //        return StatusCode(500);
+        //    }
+        //}
+
+
+        //[HttpGet("getclients")]
+        //[Authorize(Policy = "Admin")]
+        //public async Task<IActionResult> GetClients([FromQuery] PagingParameters pagingParameters)
+        //{
+        //    try
+        //    {
+        //        var result = await clientService.GetClients(pagingParameters);
+        //        if (result.Status != Common.ResultCodeEnum.Code200Success)
+        //        {
+        //            return BadRequest(result.Status.ToString());
+        //        }
+        //        return Ok(result);
+        //    }
+        //    catch (Exception)
+        //    {
+        //        return StatusCode(500);
+        //    }
+        //}
+
+        //[HttpGet("filter")]
+        //[Authorize(Policy = "Admin")]
+        //public async Task<IActionResult> FilterClients([FromBody] ClientServiceModel clientServiceModel)
+        //{
+        //    try
+        //    {
+        //        var result = await clientService.FilterClients(clientServiceModel);
+        //        if (result.Status != Common.ResultCodeEnum.Code200Success)
+        //        {
+        //            return BadRequest(result.Status.ToString());
+        //        }
+        //        return Ok(result);
+        //    }
+        //    catch (Exception)
+        //    {
+        //        return StatusCode(500);
+        //    }
+        //}
 
         [HttpDelete("delete/{clientId}")]
         [Authorize(Policy = "Admin")]
