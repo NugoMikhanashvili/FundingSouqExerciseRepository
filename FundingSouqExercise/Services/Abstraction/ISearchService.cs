@@ -10,5 +10,6 @@ namespace FundingSouqExercise.Services.Abstraction
     public interface ISearchService
     {
         Task<ResultWrapper<List<SearchedParameter>>> GetLastParameters(int userId);
+        Task<ResultWrapper<ResultCodeEnum>> SaveSearchedParameter(string username, string searchParameterName, string searchParameterValue);
     }
 }

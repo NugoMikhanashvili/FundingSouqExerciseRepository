@@ -12,10 +12,12 @@ namespace FundingSouqExercise.Services.Implementation
     public class SearchService : ISearchService
     {
         private readonly ISearchedParameterRepository searchParameterRepository;
+        private readonly IUserRepository userRepository;
 
-        public SearchService(ISearchedParameterRepository searchParameterRepository)
+        public SearchService(ISearchedParameterRepository searchParameterRepository, IUserRepository userRepository)
         {
             this.searchParameterRepository = searchParameterRepository;
+            this.userRepository = userRepository;
         }
 
         public async Task<ResultWrapper<List<SearchedParameter>>> GetLastParameters(int userId)
@@ -31,6 +33,29 @@ namespace FundingSouqExercise.Services.Implementation
             {
                 Status = ResultCodeEnum.Code200Success,
                 Value = result
+            };
+        }
+
+        public async Task<ResultWrapper<ResultCodeEnum>> SaveSearchedParameter(string username, string searchParameterName, string searchParameterValue)
+        {
+            var user = userRepository.Find(x => x.Username == username);
+            if (user == null) return new ResultWrapper<ResultCodeEnum>
+            {
+                Status = ResultCodeEnum.UserNotFound
+            };
+
+            var newSearchedParameter = new SearchedParameter
+            {
+                UserId = user.Id,
+                ParameterName = searchParameterName,
+                ParameterValue = searchParameterValue
+            };
+
+            searchParameterRepository.Create(newSearchedParameter);
+            searchParameterRepository.Save();
+            return new ResultWrapper<ResultCodeEnum>
+            {
+                Status = ResultCodeEnum.Code200Success,
             };
         }
     }

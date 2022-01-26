@@ -18,11 +18,13 @@ namespace FundingSouqExercise.Controllers
     {
         private readonly IClientService clientService;
         private readonly IClientAccountService clientAccountService;
+        private readonly ISearchService searchService;
 
-        public ClientsController(IClientService clientService, IClientAccountService clientAccountService)
+        public ClientsController(IClientService clientService, IClientAccountService clientAccountService, ISearchService searchService)
         {
             this.clientService = clientService;
             this.clientAccountService = clientAccountService;
+            this.searchService = searchService;
         }
 
         [HttpPost("create")]
@@ -95,7 +97,7 @@ namespace FundingSouqExercise.Controllers
                 {
                     return BadRequest(result.Status.ToString());
                 }
-                return Ok($"Count: {result.Value.Count} \n {result}");
+                return Ok(result);
             }
             catch (Exception)
             {
@@ -110,6 +112,25 @@ namespace FundingSouqExercise.Controllers
             try
             {
                 var result = await clientService.GetClients(pagingParameters);
+                if (result.Status != Common.ResultCodeEnum.Code200Success)
+                {
+                    return BadRequest(result.Status.ToString());
+                }
+                return Ok(result);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500);
+            }
+        }
+
+        [HttpGet("filter")]
+        [Authorize(Policy = "Admin")]
+        public async Task<IActionResult> FilterClients([FromBody] ClientServiceModel clientServiceModel)
+        {
+            try
+            {
+                var result = await clientService.FilterClients(clientServiceModel);
                 if (result.Status != Common.ResultCodeEnum.Code200Success)
                 {
                     return BadRequest(result.Status.ToString());

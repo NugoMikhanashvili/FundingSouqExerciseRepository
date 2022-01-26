@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FundingSouqExercise.Data.Abstraction
 {
-    public interface ISearchedParameterRepository
+    public interface ISearchedParameterRepository : IBaseRepository<SearchedParameter>
     {
         List<SearchedParameter> GetSearchedParameters(int userId);
     }
