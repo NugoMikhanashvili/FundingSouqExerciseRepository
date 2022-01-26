@@ -13,7 +13,7 @@ namespace FundingSouqExercise.Extensions
         public static void RegisterRepositories(this IServiceCollection services)
         {
             services.AddScoped<IClientAccountRepository, ClientAccountRepository>();
-            services.AddScoped<ISearchedParameterRepository, SearchedParameterRepository>();
+            services.AddScoped<IClientFilterRepository, ClientFilterRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IClientRepository, ClientRepository>();
         }

@@ -27,7 +27,7 @@ namespace FundingSouqExercise.Data
         public DbSet<User> Users { get; set; }
         public DbSet<Client> Clients { get; set; }
         public DbSet<UserType> UserTypes { get; set; }
-        public DbSet<SearchedParameter> SearchedParameters { get; set; }
+        public DbSet<ClientFilter> ClientFilters { get; set; }
         public DbSet<ClientAccount> ClientAccounts { get; set; }
 
     }

@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace FundingSouqExercise.Data.Abstraction
 {
-    public interface ISearchedParameterRepository : IBaseRepository<SearchedParameter>
+    public interface IClientFilterRepository : IBaseRepository<ClientFilter>
     {
+
     }
 }

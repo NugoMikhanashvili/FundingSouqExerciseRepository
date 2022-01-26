@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace FundingSouqExercise.Data.Domain.POCO
 {
-    public class SearchedParameter : BaseEntity
+    public class ClientFilter : BaseEntity
     {
+        public int UserId { get; set; }
         public int? ClientId { get; set; }
         public string Firstname { get; set; }
         public string Lastname { get; set; }
@@ -21,5 +22,8 @@ namespace FundingSouqExercise.Data.Domain.POCO
         public string City { get; set; }
         public string Street { get; set; }
         public string ZipCode { get; set; }
+
+        [ForeignKey("UserId")]
+        public User User { get; set; }
     }
 }

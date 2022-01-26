@@ -17,6 +17,5 @@ namespace FundingSouqExercise.Controllers
         {
             this.searchService = searchService;
         }
-
     }
 }

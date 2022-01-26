@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace FundingSouqExercise.Data.Implementation
 {
-    public class SearchedParameterRepository : BaseRepository<SearchedParameter>, ISearchedParameterRepository
+    public class ClientFilterRepository : BaseRepository<ClientFilter>, IClientFilterRepository
     {
         private DbContext dbContext;
 
-        public SearchedParameterRepository(DbContext dbContext) : base(dbContext)
+        public ClientFilterRepository(DbContext dbContext) : base(dbContext)
         {
             this.dbContext = dbContext;
         }

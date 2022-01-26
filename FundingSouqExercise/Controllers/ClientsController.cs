@@ -92,7 +92,39 @@ namespace FundingSouqExercise.Controllers
         {
             try
             {
+                // Get user id
+                var user = HttpContext.User.Claims.Where(x=>x.Type == "userid").FirstOrDefault();
+                var userId = Int32.Parse(user.Value);
+                //------
+
+                var filterSavedResult = await searchService.SaveSearchedFilter(clientServiceModel, userId);
+
                 var result = await clientService.GetClients(clientServiceModel, pagingParameters);
+                if (result.Status != Common.ResultCodeEnum.Code200Success)
+                {
+                    return BadRequest(result.Status.ToString());
+                }
+                return Ok(result);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500);
+            }
+        }
+
+        [HttpGet("getclientfilters")]
+        [Authorize(Policy = "Admin")]
+        public async Task<IActionResult> GetClientFilters()
+        {
+            try
+            {
+                // Get user id
+                var user = HttpContext.User.Claims.Where(x => x.Type == "userid").FirstOrDefault();
+                var userId = Int32.Parse(user.Value);
+                //------
+
+                var result = await searchService.GetLastFilters(userId);
+
                 if (result.Status != Common.ResultCodeEnum.Code200Success)
                 {
                     return BadRequest(result.Status.ToString());
